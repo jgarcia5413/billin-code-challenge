@@ -20,6 +20,7 @@ export class ImportInvoicesService {
     var rows = await this.fileReader.read(filePath, {
       encoding: config.encoding,
       delimiter: config.delimiter,
+      hasHeader: config.hasHeader,
     });
     const invoices: IInvoiceProps[] = [];
     const errors: IErrorLine[] = [];

@@ -1,10 +1,10 @@
 import { IFileReader } from '../../domain/services/fileReader.port';
 import fs from 'fs';
-import { config } from '../../config';
 
 type CSVOptions = {
   delimiter?: string;
   encoding?: string;
+  hasHeader?: boolean;
 };
 
 export class CSVFileReader implements IFileReader {
@@ -23,7 +23,7 @@ export class CSVFileReader implements IFileReader {
               .map((row: string): string[] => {
                 return row.split(options?.delimiter ? options.delimiter : ';');
               });
-            if (config.hasHeader) rows.shift(); // remove header row
+            if (options && options.hasHeader) rows.shift(); // remove header row
             resolve(rows);
           }
         },

@@ -22,3 +22,16 @@ Otherwise, you are free to approach the challenge in any way you wish. The only 
   `npm test`
 - Development testing mode (watch all files or a single file)
   `npm run test:watch`
+
+# Development
+
+I've tried to use a clean architecture (using ports and adapters pattern) and SOLID principes. In addition, we have tried to test all the functionalities using TDD to develop some of them.
+
+This project is structured as:
+
+* **Domain**: Contains models and interfaces of services (ports)
+* **Infrastructure**: Contains implementation of services interfaces on domain
+* **UseCase**: Contains uses case of the application. This would be part of the application layer. In this layer also contains the importer.ts (has controller role).
+  * **Utils**: Contains differents utilities for parse or validate invoice data
+
+For some constants an **.env** file has been implemented. Before start copy .env.sample and rename to .env for use it
