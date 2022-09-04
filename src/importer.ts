@@ -1,12 +1,13 @@
+import { CSVFileReader } from './infrastructure/services/CSVFileReader.adapter';
+import { InvoiceInMemoryRepository } from './infrastructure/services/InvoiceInMemoryRepository.adapter';
+import { ImportInvoicesService } from './useCases/importInvoices.service';
+
 export class Importer {
   async import(filePath: string): Promise<any> {
-    console.log(
-      'remove this line when you use the filePath variable',
-      filePath,
+    const service = new ImportInvoicesService(
+      new CSVFileReader(),
+      new InvoiceInMemoryRepository(),
     );
-    return {
-      ok: [],
-      ko: [],
-    };
+    return service.import(filePath);
   }
 }
